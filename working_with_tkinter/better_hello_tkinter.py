@@ -10,7 +10,7 @@ class HelloView(tk.Frame):
         name_label = ttk.Label(self, text="Name:")
         #store contents entry box bound to variable name instead of to widget name_entry
         name_entry = ttk.Entry(self, textvariable=self.name)
-        ch_button = ttk.Button(self, text="Change", command=self.on_change())
+        ch_button = ttk.Button(self, text="Change", command=self.on_change)
         """
         textvariable: we can change the text by just changing the hello
         string variable
@@ -19,7 +19,7 @@ class HelloView(tk.Frame):
         in pixels
         """
         hello_label = ttk.Label(self, textvariable=self.hello_string,
-                                font=("TkDefaultFont", 64), wraplenght=600)
+                                font=("TkDefaultFont", 64), wraplength=600)
         """
         grid allow to position widgets
         sticky: which side of the cell the contents must stick to
@@ -57,6 +57,12 @@ class MyApplication(tk.Tk):
         self.title("Hello Tkinter")
         self.geometry("800x600")
         self.resizable(width=False, height=False)
+        HelloView(self).grid(sticky=(tk.E + tk.W + tk.N + tk.S))
+        self.columnconfigure(0, weight=1)
+
+if __name__ == '__main__':
+    app = MyApplication()
+    app.mainloop()
 
 
 
